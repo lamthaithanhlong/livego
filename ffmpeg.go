@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func ffmpeg_exec() {
+func main() {
 	for {
 		// Define the FFmpeg command
 		cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "1:0", "-s", "854x480", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "5", "-b:v", "200k", "-c:a", "aac", "-f", "flv", "rtmp://127.0.0.1:1935/live/test")
