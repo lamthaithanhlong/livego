@@ -11,8 +11,8 @@ import (
 
 func main() {
 	for {
-		// Define the FFmpeg command
-		cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "1:1", "-s", "854x480", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "5", "-b:v", "200k", "-c:a", "aac", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
+		// Define the optimized FFmpeg command
+		cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "1:1", "-s", "640x360", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "30", "-b:v", "1000k", "-c:a", "aac", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
 
 		// Create a pipe to read from standard error (stderr)
 		stderr, err := cmd.StderrPipe()
