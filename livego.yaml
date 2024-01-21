@@ -24,6 +24,6 @@ rtmp_noauth: true
 server:
 - appname: live
   live: true
-  hls: true
-  api: true
-  flv: true
+  hls: false
+  api: false
+  flv: false

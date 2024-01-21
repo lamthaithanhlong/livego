@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robot Controller</title>
+    <style>
+        button {
+            width: 100px;
+            height: 50px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Robot Control Panel</h1>
+    <button id="forward">Move Forward</button>
+    <button id="backward">Move Backward</button>
+    <button id="left">Turn Left</button>
+    <button id="right">Turn Right</button>
+    <p id="status"></p>
+
+    <script>
+        var buttons = document.querySelectorAll('button');
+        function setButtonsDisabled(disabled) {
+            buttons.forEach(function(button) {
+                button.disabled = disabled;
+            });
+        }
+
+        function sendCommand(action) {
+            setButtonsDisabled(true);
+            document.getElementById('status').innerText = 'Executing: ' + action;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://167.88.168.20:5000/move_robot", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    setButtonsDisabled(false);
+                    document.getElementById('status').innerText = 'Ready';
+                }
+            };
+            xhr.send(JSON.stringify({
+                action: action,
+                duration: 3 // You can modify this duration as needed
+            }));
+        }
+
+        document.getElementById('forward').addEventListener('click', function() { sendCommand('forward'); });
+        document.getElementById('backward').addEventListener('click', function() { sendCommand('backward'); });
+        document.getElementById('left').addEventListener('click', function() { sendCommand('left'); });
+        document.getElementById('right').addEventListener('click', function() { sendCommand('right'); });
+    </script>
+</body>
+</html>
