@@ -17,7 +17,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-var VERSION = "master"
+var VERSION = "v1"
 
 func startHls() *hls.Server {
 	hlsAddr := configure.Config.GetString("hls_addr")
