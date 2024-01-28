@@ -14,13 +14,17 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 	for {
 		// Define the FFmpeg command
-		// cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "1:1", "-s", "640x360", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "30", "-b:v", "200k", "-c:a", "aac", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
+		cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "0:4", "-s", "640x360", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "30", "-b:v", "200k", "-c:a", "aac", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
 
 		// cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "2:1", "-s", "640x360", "-c:v", "libx264", "-preset", "veryfast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "15", "-b:v", "200k", "-bufsize", "100k", "-c:a", "aac", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
 
 		// cmd := exec.Command("ffmpeg", "-i", "rtmp://localhost/live/livestream", "-c", "copy", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
 
-		cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "2:4", "-s", "640x360", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "10", "-b:v", "150k", "-bufsize", "50k", "-c:a", "aac", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
+		// cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "1:0", "-s", "640x360", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "10", "-b:v", "150k", "-bufsize", "50k", "-c:a", "aac", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
+
+		// cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "1:0", "-s", "640x360", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "10", "-b:v", "150k", "-bufsize", "50k", "-ar", "44100", "-b:a", "256k", "-c:a", "aac", "-profile:a", "aac_low", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
+
+		// cmd := exec.Command("ffmpeg", "-f", "avfoundation", "-framerate", "30", "-i", "0:4", "-af", "afftdn", "-s", "640x360", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "zerolatency", "-pix_fmt", "yuv420p", "-g", "10", "-b:v", "250k", "-bufsize", "150k", "-ar", "44100", "-b:a", "300k", "-c:a", "aac", "-profile:a", "aac_low", "-f", "flv", "rtmp://167.88.168.20:1935/live/test")
 
 		// Create stderr pipe
 		stderr, err := cmd.StderrPipe()
